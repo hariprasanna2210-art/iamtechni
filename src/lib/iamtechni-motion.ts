@@ -60,6 +60,17 @@ export function initIamtechni(root: HTMLElement): Cleanup {
         0.1,
       )
       .from(
+        q(root, ".it-hero__system"),
+        { opacity: 0, scale: 0.96, transformOrigin: "50% 50%", duration: 1.1, ease: "power3.out" },
+        0.3,
+      )
+      .fromTo(
+        qa(root, ".it-hero__system-line"),
+        { strokeDasharray: 260, strokeDashoffset: 260 },
+        { strokeDashoffset: 0, duration: 1.25, ease: "power2.out", stagger: 0.08 },
+        0.45,
+      )
+      .from(
         [q(root, ".it-hero__gold"), q(root, ".it-hero__meta"), q(root, ".it-brand")].filter(
           Boolean,
         ) as HTMLElement[],

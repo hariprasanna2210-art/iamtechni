@@ -162,12 +162,12 @@ const STATEMENT =
 
 const HERO_MESSAGES = [
   {
-    title: ["AI product", "engineering", "for startups"],
-    note: "From first idea to working product, we help startup teams turn AI opportunities into focused software that is ready for real users.",
-  },
-  {
     title: ["Smarter systems", "for growing", "teams"],
     note: "We connect software, automation and business insight so growing teams can spend less time coordinating work and more time moving forward.",
+  },
+  {
+    title: ["AI product", "engineering", "for startups"],
+    note: "From first idea to working product, we help startup teams turn AI opportunities into focused software that is ready for real users.",
   },
   {
     title: ["Build the", "next useful", "thing"],
@@ -181,21 +181,21 @@ function Home() {
   const [heroVisible, setHeroVisible] = useState(true);
 
   useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
     let swapTimer: number | undefined;
     const interval = window.setInterval(() => {
       setHeroVisible(false);
       swapTimer = window.setTimeout(() => {
         setHeroIndex((index) => (index + 1) % HERO_MESSAGES.length);
         setHeroVisible(true);
-      }, 260);
-    }, 5200);
-
+      }, 360);
+    }, 6200);
     return () => {
       window.clearInterval(interval);
       if (swapTimer) window.clearTimeout(swapTimer);
     };
   }, []);
-
   useEffect(() => {
     if (!rootRef.current) return;
     const dispose = initIamtechni(rootRef.current);
@@ -268,29 +268,45 @@ function Home() {
             <i className="it-bar it-hero__bar it-hero__bar--a" />
             <i className="it-bar it-hero__bar it-hero__bar--c" />
             <span className="it-hero__gold" />
+            <svg className="it-hero__system" viewBox="0 0 520 420" aria-hidden="true">
+              <path className="it-hero__system-line" d="M46 312 158 230 252 278 364 144 468 202" />
+              <path className="it-hero__system-line" d="M158 230 220 106 364 144 420 318" />
+              <path className="it-hero__system-path" d="M46 312 158 230 252 278 364 144" />
+              <circle cx="46" cy="312" r="5" /><circle cx="158" cy="230" r="5" /><circle cx="220" cy="106" r="4" />
+              <circle cx="252" cy="278" r="5" /><circle cx="364" cy="144" r="7" /><circle cx="420" cy="318" r="4" /><circle cx="468" cy="202" r="5" />
+            </svg>
+            <span className="it-hero__system-label it-mono">SYSTEM / 01</span>
+            <span className="it-hero__system-meta it-mono">AUTOMATION × INTELLIGENCE</span>
           </div>
 
           <h1 className={`it-hero__title it-giant${heroVisible ? " is-visible" : ""}`} aria-live="polite">
             <span className="it-hero__line it-hero__line--1">
-              <span>{HERO_MESSAGES[heroIndex].title[0]}</span>
+              <span>{HERO_MESSAGES[heroIndex]!.title[0]}</span>
             </span>
             <span className="it-hero__line it-hero__line--2">
-              <span className="it-accent">{HERO_MESSAGES[heroIndex].title[1]}</span>
+              <span className="it-accent">{HERO_MESSAGES[heroIndex]!.title[1]}</span>
             </span>
             <span className="it-hero__line it-hero__line--3">
               <span>
-                {HERO_MESSAGES[heroIndex].title[2]}<span className="it-dot" />
+                {HERO_MESSAGES[heroIndex]!.title[2]}<span className="it-dot" />
               </span>
             </span>
           </h1>
 
           <div className="it-hero__meta">
-            <p className={`it-hero__note${heroVisible ? " is-visible" : ""}`} aria-live="polite">
-              {HERO_MESSAGES[heroIndex].note}
-            </p>
+            <div className="it-hero__support">
+              <p className="it-hero__eyebrow it-mono">Software · Automation · Intelligence</p>
+              <p className={`it-hero__note${heroVisible ? " is-visible" : ""}`} aria-live="polite">
+                {HERO_MESSAGES[heroIndex]!.note}
+              </p>
+              <div className="it-hero__actions">
+                <a href="#work" data-scroll data-cursor="hover">Explore what we build <span aria-hidden="true">→</span></a>
+                <a href="#system" data-scroll data-cursor="hover">How we work</a>
+              </div>
+            </div>
             <div className="it-hero__scroll it-mono">
               <i aria-hidden="true" />
-              Scroll to enter
+              <span>Scroll to explore</span>
             </div>
           </div>
         </section>
