@@ -1,27 +1,27 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import "../iamtechni.css";
 import { initIamtechni } from "../lib/iamtechni-motion";
 import logo from "../assets/logo.png";
-import work01 from "../assets/work-01.jpg";
-import work02 from "../assets/work-02.jpg";
-import work03 from "../assets/work-03.jpg";
+import work01 from "../assets/solution-robot.svg";
+import work02 from "../assets/solution-software.svg";
+import work03 from "../assets/solution-satellite.svg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "iamtechni — Technology in Motion" },
+      { title: "iamtechni — AI Product Consulting & Software Development" },
       {
         name: "description",
         content:
-          "iamtechni is a technology studio building software, cloud, data and AI systems that move businesses forward.",
+          "iamtechni helps startups and product teams turn AI ideas into working software, sharper product decisions and faster business execution.",
       },
-      { property: "og:title", content: "iamtechni — Technology in Motion" },
+      { property: "og:title", content: "iamtechni — AI Product Consulting & Software Development" },
       {
         property: "og:description",
         content:
-          "A future-facing technology studio. We design and engineer the systems that move businesses forward.",
+          "We help founders and product teams define AI opportunities, build software and ship digital products that move fast without losing clarity.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -31,77 +31,77 @@ export const Route = createFileRoute("/")({
 });
 
 const RAIL = [
-  { n: "01", label: "Origin", target: "origin" },
+  { n: "01", label: "Overview", target: "origin" },
   { n: "02", label: "Position", target: "position" },
-  { n: "03", label: "Capability", target: "capability" },
-  { n: "04", label: "System", target: "system" },
-  { n: "05", label: "Work", target: "work" },
-  { n: "06", label: "Architecture", target: "architecture" },
-  { n: "07", label: "Fields", target: "fields" },
+  { n: "03", label: "Services", target: "capability" },
+  { n: "04", label: "Process", target: "system" },
+  { n: "05", label: "Solutions", target: "work" },
+  { n: "06", label: "Systems", target: "architecture" },
+  { n: "07", label: "Industries", target: "fields" },
   { n: "08", label: "Contact", target: "contact" },
 ];
 
 const CAPS = [
   {
-    key: "digital",
-    title: "Digital",
-    desc: "End-to-end product experiences — from the first interaction sketch to a shipped, measured, evolving interface.",
-    tags: ["Product strategy", "Interface systems", "Prototyping", "Design engineering"],
+    key: "ai",
+    title: "AI product strategy",
+    desc: "Practical AI guidance for startup teams: identify high-leverage use cases, validate concepts quickly and build a roadmap grounded in real product value.",
+    tags: ["AI roadmap", "Use-case validation", "Automation", "Pilot design"],
   },
   {
     key: "software",
-    title: "Software",
-    desc: "Architecture and engineering for systems that carry real load, real money and real consequences.",
-    tags: ["Architecture", "Engineering", "Platforms", "APIs", "Automation"],
+    title: "Custom software",
+    desc: "Startup-ready software built to support product workflows, customer operations and internal execution without adding friction or complexity.",
+    tags: ["MVPs", "Product tooling", "Process automation", "API integrations"],
   },
   {
-    key: "cloud",
-    title: "Cloud",
-    desc: "Infrastructure designed as a product: reproducible, observable, and boring in the best possible way.",
-    tags: ["Landing zones", "Kubernetes", "Cost engineering", "Observability"],
+    key: "product",
+    title: "Product engineering",
+    desc: "From early prototype to production-ready build, we create digital products that are lean, maintainable and designed around real user behavior.",
+    tags: ["Product design", "Architecture", "Frontend", "Delivery support"],
   },
   {
     key: "data",
-    title: "Data",
-    desc: "Pipelines and models that turn operational noise into decisions leadership can actually defend.",
-    tags: ["Warehousing", "Streaming", "Governance", "Decision layers"],
+    title: "Data & intelligence",
+    desc: "Smart reporting, decision support and AI-enabled workflows that help founders act faster with better visibility into performance and customer needs.",
+    tags: ["Dashboards", "Reporting", "AI features", "Product analytics"],
   },
   {
-    key: "ai",
-    title: "AI",
-    desc: "Applied intelligence with guardrails — retrieval, agents and evaluation built into the product, not bolted on.",
-    tags: ["Retrieval", "Agents", "Evaluation", "MLOps"],
+    key: "support",
+    title: "Technical enablement",
+    desc: "Support for fast-moving teams that need stable infrastructure, faster delivery and better technical execution while scaling.",
+    tags: ["System setup", "Technical support", "Operations", "Growth tooling"],
   },
 ];
 
 const SYSTEM = [
-  { n: "01", h: "Idea", p: "We interrogate the problem before touching a solution. Constraints first." },
-  { n: "02", h: "Design", p: "Interfaces, data contracts and architecture drawn as one continuous system." },
-  { n: "03", h: "Build", p: "Small increments, real environments, production quality from the first commit." },
-  { n: "04", h: "Scale", p: "Load, cost and reliability engineered as deliberate product features." },
-  { n: "05", h: "Evolve", p: "Instrumented systems that keep improving long after launch day." },
+  { n: "01", h: "Assess", p: "We review the business problem, current systems and operational bottlenecks before proposing a direction." },
+  { n: "02", h: "Design", p: "We map the right workflow, architecture and user journey as one connected system instead of disconnected tools." },
+  { n: "03", h: "Build", p: "We deliver in workable phases with production-minded engineering and clear milestones from the start." },
+  { n: "04", h: "Deploy", p: "We support rollout, system integration and stabilization so the solution performs under real operating conditions." },
+  { n: "05", h: "Optimize", p: "We improve performance, automate repetitive work and refine the system as the business grows." },
 ];
 
 const WORK = [
   {
     n: "01",
-    title: "Meridian Core",
-    tags: ["Platform", "Cloud", "Data"],
-    copy: "A settlement platform rebuilt from a nightly batch into a streaming core — reconciliation dropped from hours to seconds.",
+    title: "AI operations suite",
+    tags: ["AI", "Automation", "Reporting"],
+    copy: "A workflow automation layer built to reduce repetitive admin work, improve visibility and help teams focus on decisions rather than manual coordination.",
     img: work01,
   },
   {
     n: "02",
-    title: "Atlas Field",
-    tags: ["Product", "Design", "IoT"],
-    copy: "One operator interface for twelve thousand field devices, designed for gloves, glare and no signal.",
+    title: "Business portal",
+    tags: ["Software", "UX", "Integration"],
+    copy: "A client-facing platform designed to unify service information, requests and process tracking in one clearer digital experience.",
     img: work02,
   },
   {
     n: "03",
-    title: "Verity Layer",
-    tags: ["AI", "Governance", "Software"],
-    copy: "A retrieval and evaluation layer that made an enterprise knowledge base defensible to its own risk committee.",
+    title: "Intelligence platform",
+    tags: ["Data", "Analytics", "AI"],
+    copy: "A practical AI and analytics foundation connecting data, insight and business rules so teams can act faster with more confidence.",
     img: work03,
   },
 ];
@@ -130,37 +130,70 @@ const EDGES: [number, number][] = [
 ];
 
 const INDUSTRIES = [
-  { label: "Health", tone: "#13d6b0", say: "Clinical systems where latency, privacy and clarity are not negotiable." },
-  { label: "Finance", tone: "#2868d8", say: "Movement of money, modelled precisely, audited continuously." },
-  { label: "Retail", tone: "#24a9d2", say: "Commerce that behaves identically on a phone, a counter and an API." },
-  { label: "Education", tone: "#d4a83e", say: "Learning platforms built for scale spikes and very short attention spans." },
-  { label: "Manufacturing", tone: "#193b8f", say: "Factory-floor telemetry translated into decisions before the shift ends." },
-  { label: "Enterprise", tone: "#24a9d2", say: "Legacy estates modernised without pausing the business for a year." },
+  { label: "Healthcare", tone: "#13d6b0", say: "Digital systems built for privacy, reliability and a seamless patient or staff experience." },
+  { label: "Finance", tone: "#2868d8", say: "Secure, compliant systems designed to support operations, reporting and customer trust." },
+  { label: "Logistics", tone: "#24a9d2", say: "Operational visibility and workflow automation that help teams move faster with less friction." },
+  { label: "Retail", tone: "#d4a83e", say: "Connected systems that improve service, reporting and customer experience across channels." },
+  { label: "Manufacturing", tone: "#193b8f", say: "Production data and service workflows that support efficiency, uptime and process clarity." },
+  { label: "Professional services", tone: "#24a9d2", say: "Business systems that simplify delivery, customer experience and internal operations without added complexity." },
 ];
 
 const VOICES = [
   {
-    quote: "They didn't just solve the problem. They changed how we thought about it.",
-    who: "Group CTO",
-    org: "Financial infrastructure group",
+    quote: "The team focused on the real operational pain points and helped us simplify the process without adding noise.",
+    who: "Operations lead",
+    org: "Business team",
   },
   {
-    quote: "Six weeks in, we had a system in production our previous vendor had spent a year describing.",
-    who: "VP Engineering",
-    org: "Industrial technology",
+    quote: "We wanted a partner who could build systems that work in practice, not just look strong in a review deck.",
+    who: "Product director",
+    org: "Digital service team",
   },
   {
-    quote: "The architecture is the thing that keeps paying us back. It still holds.",
-    who: "Head of Platform",
-    org: "National health network",
+    quote: "The new workflow and reporting setup gave us faster decisions and better visibility across the business.",
+    who: "Technology manager",
+    org: "Internal systems",
   },
 ];
 
 const STATEMENT =
-  "We don't just build software. We build the systems that move businesses forward.";
+  "We build the software, systems and IT solutions that help businesses move with confidence.";
+
+const HERO_MESSAGES = [
+  {
+    title: ["AI product", "engineering", "for startups"],
+    note: "From first idea to working product, we help startup teams turn AI opportunities into focused software that is ready for real users.",
+  },
+  {
+    title: ["Smarter systems", "for growing", "teams"],
+    note: "We connect software, automation and business insight so growing teams can spend less time coordinating work and more time moving forward.",
+  },
+  {
+    title: ["Build the", "next useful", "thing"],
+    note: "Strategy, design and engineering in one senior team, shaped around the customer problem and the outcome your business needs next.",
+  },
+];
 
 function Home() {
   const rootRef = useRef<HTMLDivElement>(null);
+  const [heroIndex, setHeroIndex] = useState(0);
+  const [heroVisible, setHeroVisible] = useState(true);
+
+  useEffect(() => {
+    let swapTimer: number | undefined;
+    const interval = window.setInterval(() => {
+      setHeroVisible(false);
+      swapTimer = window.setTimeout(() => {
+        setHeroIndex((index) => (index + 1) % HERO_MESSAGES.length);
+        setHeroVisible(true);
+      }, 260);
+    }, 5200);
+
+    return () => {
+      window.clearInterval(interval);
+      if (swapTimer) window.clearTimeout(swapTimer);
+    };
+  }, []);
 
   useEffect(() => {
     if (!rootRef.current) return;
@@ -230,24 +263,23 @@ function Home() {
             <span className="it-hero__gold" />
           </div>
 
-          <h1 className="it-hero__title it-giant">
+          <h1 className={`it-hero__title it-giant${heroVisible ? " is-visible" : ""}`} aria-live="polite">
             <span className="it-hero__line it-hero__line--1">
-              <span>Technology</span>
+              <span>{HERO_MESSAGES[heroIndex].title[0]}</span>
             </span>
             <span className="it-hero__line it-hero__line--2">
-              <span className="it-accent">in motion</span>
+              <span className="it-accent">{HERO_MESSAGES[heroIndex].title[1]}</span>
             </span>
             <span className="it-hero__line it-hero__line--3">
               <span>
-                we build what&rsquo;s next<span className="it-dot" />
+                {HERO_MESSAGES[heroIndex].title[2]}<span className="it-dot" />
               </span>
             </span>
           </h1>
 
           <div className="it-hero__meta">
-            <p className="it-hero__note">
-              iamtechni is a technology studio. We design, engineer and operate the systems
-              organisations run on — software, cloud, data, intelligence.
+            <p className={`it-hero__note${heroVisible ? " is-visible" : ""}`} aria-live="polite">
+              {HERO_MESSAGES[heroIndex].note}
             </p>
             <div className="it-hero__scroll it-mono">
               <i aria-hidden="true" />
@@ -275,7 +307,7 @@ function Home() {
 
         {/* ================= 03 CAPABILITY FIELD ================= */}
         <section className="it-section it-dark it-cap" id="capability">
-          <p className="it-eyebrow it-mono">03 — Capability field</p>
+          <p className="it-eyebrow it-mono">03 — Startup services</p>
           <div className="it-cap__grid">
             <div className="it-cap__list" role="tablist" aria-label="Capabilities">
               {CAPS.map((c, i) => (
@@ -318,7 +350,7 @@ function Home() {
 
         {/* ================= 04 SYSTEM ================= */}
         <section className="it-section it-system" id="system">
-          <p className="it-eyebrow it-mono">04 — The iamtechni system</p>
+          <p className="it-eyebrow it-mono">04 — How we move</p>
           <div className="it-system__stage">
             <span className="it-system__travel" aria-hidden="true" />
             {SYSTEM.map((s) => (
@@ -337,9 +369,9 @@ function Home() {
           <div className="it-work__track">
             <article className="it-work__panel">
               <div className="it-work__lead">
-                <p className="it-eyebrow it-mono">05 — Selected work</p>
+                <p className="it-eyebrow it-mono">05 — Solution areas</p>
                 <h2 className="it-mid" style={{ marginTop: "1.2rem" }}>
-                  Three systems<span className="it-dot" /> still running
+                  Practical systems<span className="it-dot" /> built for your operations
                 </h2>
               </div>
             </article>
@@ -368,7 +400,7 @@ function Home() {
         <section className="it-section it-net" id="architecture">
           <p className="it-eyebrow it-mono">06 — Architecture</p>
           <h2 className="it-mid it-reveal" style={{ marginTop: "1.2rem", maxWidth: "18ch" }}>
-            One system, seven layers
+            Connected systems, not disconnected tools
           </h2>
           <div className="it-net__stage">
             <svg className="it-net__svg" aria-hidden="true">
@@ -406,7 +438,7 @@ function Home() {
         {/* ================= 07 FIELDS ================= */}
         <section className="it-section it-dark it-ind" id="fields">
           <span className="it-ind__aura" aria-hidden="true" />
-          <p className="it-eyebrow it-mono">07 — Fields we work in</p>
+          <p className="it-eyebrow it-mono">07 — Industries we serve</p>
           <div className="it-ind__wrap">
             {INDUSTRIES.map((ind, i) => (
               <button
@@ -428,41 +460,41 @@ function Home() {
         </section>
 
         {/* ================= 08 NUMBERS ================= */}
-        <section className="it-section it-num" aria-label="By the numbers">
+        <section className="it-section it-num" aria-label="What we value">
           <div>
-            <p className="it-eyebrow it-mono">08 — Measured</p>
-            <p className="it-num__hero" data-count="100">
-              <span>0</span>+
+            <p className="it-eyebrow it-mono">08 — What we value</p>
+            <p className="it-num__hero" data-count="3">
+              <span>0</span>
             </p>
             <p className="it-mono" style={{ marginTop: "1.4rem" }}>
-              Systems shipped into production
+              Product principles behind every build
             </p>
           </div>
           <div className="it-num__side">
-            <div className="it-num__cell" data-count="10">
+            <div className="it-num__cell" data-count="1">
               <strong>
-                <span>0</span>+
+                <span>0</span>
               </strong>
-              <span className="it-mono">Years in motion</span>
+              <span className="it-mono">Clear product direction</span>
             </div>
-            <div className="it-num__cell" data-count="50">
+            <div className="it-num__cell" data-count="2">
               <strong>
-                <span>0</span>+
+                <span>0</span>
               </strong>
-              <span className="it-mono">Long-term partners</span>
+              <span className="it-mono">Fast validation and delivery</span>
             </div>
-            <div className="it-num__cell" data-count="99">
+            <div className="it-num__cell" data-count="3">
               <strong>
-                <span>0</span>%
+                <span>0</span>
               </strong>
-              <span className="it-mono">Uptime we hold ourselves to</span>
+              <span className="it-mono">Scalable product foundations</span>
             </div>
           </div>
         </section>
 
         {/* ================= 09 VOICES ================= */}
-        <section className="it-section it-dark it-voice" aria-label="Client voices">
-          <p className="it-eyebrow it-mono">09 — Voices</p>
+        <section className="it-section it-dark it-voice" aria-label="Client perspective">
+          <p className="it-eyebrow it-mono">09 — Client perspective</p>
           <div className="it-voice__stack">
             {VOICES.map((v, i) => (
               <div className="it-voice__item" key={v.who} data-on={i === 0}>
@@ -511,12 +543,6 @@ function Home() {
             <a className="it-contact__act" href="mailto:hello@iamtechni.com" data-cursor="hover">
               hello@iamtechni.com <em aria-hidden="true">→</em>
             </a>
-            <a className="it-contact__act" href="tel:+917418120053" data-cursor="hover">
-              +91-7418120053 <em aria-hidden="true">→</em>
-            </a>
-            <a className="it-contact__act" href="https://wa.me/917418120053" target="_blank" rel="noreferrer" data-cursor="hover">
-              WhatsApp <em aria-hidden="true">→</em>
-            </a>
           </div>
         </section>
       </main>
@@ -550,12 +576,6 @@ function Home() {
             <span className="it-mono">Contact</span>
             <a href="mailto:hello@iamtechni.com" data-cursor="hover">
               hello@iamtechni.com
-            </a>
-            <a href="tel:+917418120053" data-cursor="hover">
-              +91-7418120053
-            </a>
-            <a href="https://wa.me/917418120053" target="_blank" rel="noreferrer" data-cursor="hover">
-              WhatsApp
             </a>
             <a href="#contact" data-scroll data-cursor="hover">
               Start a project
