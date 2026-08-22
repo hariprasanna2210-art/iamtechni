@@ -284,7 +284,7 @@ export function initIamtechni(root: HTMLElement): Cleanup {
     /* ---------------- work: pinned horizontal gallery ---------------- */
     const work = q(root, ".it-work");
     const track = q(root, ".it-work__track");
-    if (work && track && !reduced) {
+    if (work && track && !reduced && window.matchMedia("(min-width: 861px)").matches) {
       const distance = () => track.scrollWidth - window.innerWidth;
       gsap.to(track, {
         x: () => -distance(),
@@ -403,6 +403,7 @@ export function initIamtechni(root: HTMLElement): Cleanup {
       open = next;
       overlay.dataset["open"] = String(next);
       menuBtn.setAttribute("aria-expanded", String(next));
+      menuBtn.setAttribute("aria-label", next ? "Close navigation" : "Open navigation");
       gsap.to(overlay, {
         clipPath: next ? "inset(0 0 0% 0)" : "inset(0 0 100% 0)",
         duration: 0.7,
@@ -417,6 +418,8 @@ export function initIamtechni(root: HTMLElement): Cleanup {
         delay: next ? 0.18 : 0,
       });
       if (lenis) next ? lenis.stop() : lenis.start();
+      if (next) links[0]?.focus();
+      else menuBtn.focus();
     };
     const toggle = () => setOpen(!open);
     menuBtn.addEventListener("click", toggle);

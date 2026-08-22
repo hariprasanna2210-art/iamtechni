@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { Facebook, Instagram, Linkedin, MessageCircle } from "lucide-react";
 
 import "../iamtechni.css";
 import { initIamtechni } from "../lib/iamtechni-motion";
@@ -237,19 +238,25 @@ function Home() {
         ))}
       </nav>
 
-      <button className="it-menu-btn" type="button" aria-expanded="false" aria-label="Open navigation">
+      <button
+        className="it-menu-btn"
+        type="button"
+        aria-controls="mobile-navigation"
+        aria-expanded="false"
+        aria-label="Open navigation"
+      >
         <span />
         <span />
       </button>
 
-      <div className="it-overlay" data-open="false">
+      <nav className="it-overlay" id="mobile-navigation" data-open="false" aria-label="Mobile section navigation">
         {RAIL.map((r) => (
           <a key={r.target} href={`#${r.target}`}>
             <small>{r.n}</small>
             {r.label}
           </a>
         ))}
-      </div>
+      </nav>
 
       <main>
         {/* ================= 01 HERO ================= */}
@@ -550,6 +557,12 @@ function Home() {
             <a className="it-contact__act" href="mailto:hello@iamtechni.com" data-cursor="hover">
               hello@iamtechni.com <em aria-hidden="true">→</em>
             </a>
+            <a className="it-contact__act" href="tel:+917418120053" data-cursor="hover">
+              +91 74181 20053 <em aria-hidden="true">→</em>
+            </a>
+            <a className="it-contact__act" href="https://wa.me/917418120053" target="_blank" rel="noreferrer" data-cursor="hover">
+              WhatsApp us <em aria-hidden="true">→</em>
+            </a>
           </div>
         </section>
       </main>
@@ -584,9 +597,29 @@ function Home() {
             <a href="mailto:hello@iamtechni.com" data-cursor="hover">
               hello@iamtechni.com
             </a>
+            <a href="tel:+917418120053" data-cursor="hover">
+              +91 74181 20053
+            </a>
             <a href="#contact" data-scroll data-cursor="hover">
               Start a project
             </a>
+          </div>
+          <div className="it-foot__col it-foot__social">
+            <span className="it-mono">Follow</span>
+            <div className="it-foot__social-links">
+              <a href="https://wa.me/917418120053" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp" data-cursor="hover">
+                <MessageCircle aria-hidden="true" />
+              </a>
+              <a href="https://www.linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn" data-cursor="hover">
+                <Linkedin aria-hidden="true" />
+              </a>
+              <a href="https://www.instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram" data-cursor="hover">
+                <Instagram aria-hidden="true" />
+              </a>
+              <a href="https://www.facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook" data-cursor="hover">
+                <Facebook aria-hidden="true" />
+              </a>
+            </div>
           </div>
         </div>
 

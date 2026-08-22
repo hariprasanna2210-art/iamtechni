@@ -853,9 +853,14 @@
 }
 @media (max-width: 860px) {
   .it-work__panel {
-    width: 92vw;
+    width: 100%;
     grid-template-columns: 1fr;
     align-content: center;
+  }
+  .it-work__panel:first-child { width: 100%; }
+  .it-work__track {
+    height: auto;
+    display: block;
   }
   .it-work__figure {
     height: 34vh;
@@ -1317,7 +1322,7 @@
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 0.5fr));
+  grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 0.5fr)) minmax(9rem, 0.55fr);
   gap: clamp(1.6rem, 5vw, 4rem);
   align-items: start;
 }
@@ -1337,8 +1342,33 @@
 .it-foot__col a:hover {
   color: var(--white);
 }
-.it-foot__col:nth-of-type(3) {
-  margin-top: clamp(0rem, 6vh, 5rem);
+.it-foot__social {
+  align-self: end;
+}
+.it-foot__social-links {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.it-foot__social-links a {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid color-mix(in oklab, var(--white) 24%, transparent);
+  border-radius: 50%;
+  color: var(--white);
+  transition: background 0.35s var(--ease), border-color 0.35s var(--ease), transform 0.35s var(--ease);
+}
+.it-foot__social-links a:hover {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: var(--deep-navy);
+  transform: translateY(-3px);
+}
+.it-foot__social-links svg {
+  width: 1rem;
+  height: 1rem;
 }
 .it-foot__base {
   position: relative;
@@ -1357,6 +1387,9 @@
   .it-foot__wordmark {
     grid-column: 1 / -1;
   }
+  .it-foot__social { align-self: start; }
+  .it-cap__item { min-height: 2.75rem; }
+  .it-contact__act { min-height: 2.75rem; }
 }
 
 /* ---------- reveal primitives ---------- */
