@@ -454,6 +454,7 @@ function Home() {
               </button>
             ))}
           </div>
+          <div aria-hidden="true" style={{ height: "clamp(2rem, 4vh, 4rem)" }} />
           <p className="it-ind__say" aria-live="polite">
             {INDUSTRIES[0]!.say}
           </p>
