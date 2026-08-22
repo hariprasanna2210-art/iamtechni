@@ -446,7 +446,9 @@ export function initIamtechni(root: HTMLElement): Cleanup {
     const desc = q(root, "#cap-desc");
     const tags = q(root, "#cap-tags");
     const visual = q(root, ".it-cap__visual");
+    let activeIndex = 0;
     const activate = (idx: number) => {
+      activeIndex = idx;
       capItems.forEach((it, i) => {
         it.setAttribute("aria-selected", i === idx ? "true" : "false");
         const dist = i - idx;
@@ -492,13 +494,18 @@ export function initIamtechni(root: HTMLElement): Cleanup {
       return h;
     });
     activate(0);
-    cleanups.push(() =>
+    const mobileQuery = window.matchMedia("(max-width: 700px) and (pointer: coarse)");
+    const autoAdvance = mobileQuery.matches
+      ? window.setInterval(() => activate((activeIndex + 1) % capItems.length), 5000)
+      : undefined;
+    cleanups.push(() => {
       capItems.forEach((it, i) => {
         it.removeEventListener("pointerenter", handlers[i]!);
         it.removeEventListener("focus", handlers[i]!);
         it.removeEventListener("click", handlers[i]!);
-      }),
-    );
+      });
+      if (autoAdvance !== undefined) window.clearInterval(autoAdvance);
+    });
   }
 
   /* ---------------- network nodes ---------------- */
