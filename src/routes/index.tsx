@@ -398,11 +398,19 @@ function Home() {
 
         {/* ================= 06 ARCHITECTURE ================= */}
         <section className="it-section it-net" id="architecture">
-          <p className="it-eyebrow it-mono">06 — Architecture</p>
-          <h2 className="it-mid it-reveal" style={{ marginTop: "1.2rem", maxWidth: "18ch" }}>
-            Connected systems, not disconnected tools
-          </h2>
+          <div className="it-net__intro">
+            <p className="it-eyebrow it-mono">06 — Systems architecture</p>
+            <h2 className="it-mid it-reveal">Every layer working together.</h2>
+            <p className="it-net__lead">
+              We design the foundations behind reliable products: a connected stack from cloud infrastructure to the customer experience.
+            </p>
+            <div className="it-net__readout" aria-live="polite">
+              {NODES[0]!.info}
+            </div>
+          </div>
           <div className="it-net__stage">
+            <span className="it-net__orbit it-net__orbit--one" aria-hidden="true" />
+            <span className="it-net__orbit it-net__orbit--two" aria-hidden="true" />
             <svg className="it-net__svg" aria-hidden="true">
               {EDGES.map(([a, b], i) => (
                 <line
@@ -429,9 +437,7 @@ function Home() {
                 <small>{n.label}</small>
               </button>
             ))}
-            <p className="it-net__readout" aria-live="polite">
-              {NODES[0]!.info}
-            </p>
+            <p className="it-net__hint it-mono">Explore the system</p>
           </div>
         </section>
 
