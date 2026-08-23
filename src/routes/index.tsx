@@ -4,7 +4,7 @@ import { Facebook, Instagram, Linkedin, MessageCircle } from "lucide-react";
 
 import "../iamtechni.css";
 import { initIamtechni } from "../lib/iamtechni-motion";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.iamtechni.png";
 import work01 from "../assets/solution-robot.svg";
 import work02 from "../assets/solution-software.svg";
 import work03 from "../assets/solution-satellite.svg";
@@ -179,21 +179,31 @@ function Home() {
   const rootRef = useRef<HTMLDivElement>(null);
   const [heroIndex, setHeroIndex] = useState(0);
   const [heroVisible, setHeroVisible] = useState(true);
+  const heroSwapRef = useRef<number | undefined>(undefined);
+
+  const selectHeroSlide = (nextIndex: number) => {
+    if (nextIndex === heroIndex) return;
+    setHeroVisible(false);
+    if (heroSwapRef.current) window.clearTimeout(heroSwapRef.current);
+    heroSwapRef.current = window.setTimeout(() => {
+      setHeroIndex(nextIndex);
+      setHeroVisible(true);
+    }, 260);
+  };
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) return;
-    let swapTimer: number | undefined;
     const interval = window.setInterval(() => {
       setHeroVisible(false);
-      swapTimer = window.setTimeout(() => {
+      heroSwapRef.current = window.setTimeout(() => {
         setHeroIndex((index) => (index + 1) % HERO_MESSAGES.length);
         setHeroVisible(true);
-      }, 360);
-    }, 6200);
+      }, 260);
+    }, 4200);
     return () => {
       window.clearInterval(interval);
-      if (swapTimer) window.clearTimeout(swapTimer);
+      if (heroSwapRef.current) window.clearTimeout(heroSwapRef.current);
     };
   }, []);
   useEffect(() => {
@@ -279,35 +289,34 @@ function Home() {
             <span className="it-hero__system-meta it-mono">AUTOMATION × INTELLIGENCE</span>
           </div>
 
-          <h1 className={`it-hero__title it-giant${heroVisible ? " is-visible" : ""}`} aria-live="polite">
-            <span className="it-hero__line it-hero__line--1">
-              <span>{HERO_MESSAGES[heroIndex]!.title[0]}</span>
-            </span>
-            <span className="it-hero__line it-hero__line--2">
-              <span className="it-accent">{HERO_MESSAGES[heroIndex]!.title[1]}</span>
-            </span>
-            <span className="it-hero__line it-hero__line--3">
-              <span>
-                {HERO_MESSAGES[heroIndex]!.title[2]}<span className="it-dot" />
-              </span>
-            </span>
-          </h1>
-
-          <div className="it-hero__meta">
-            <div className="it-hero__support">
-              <p className="it-hero__eyebrow it-mono">Software · Automation · Intelligence</p>
-              <p className={`it-hero__note${heroVisible ? " is-visible" : ""}`} aria-live="polite">
-                {HERO_MESSAGES[heroIndex]!.note}
-              </p>
+          <div className="it-hero__layout">
+            <div className="it-hero__copy">
+              <p className="it-hero__eyebrow it-mono"><span /> Software · Automation · Intelligence</p>
+              <p className="it-hero__kicker it-mono">Independent technology partner</p>
+              <h1 className={`it-hero__title it-giant${heroVisible ? " is-visible" : ""}`} aria-live="polite">
+                <span className="it-hero__line it-hero__line--1"><span>{HERO_MESSAGES[heroIndex]!.title[0]}</span></span>
+                <span className="it-hero__line it-hero__line--2"><span className="it-accent">{HERO_MESSAGES[heroIndex]!.title[1]}</span></span>
+                <span className="it-hero__line it-hero__line--3"><span>{HERO_MESSAGES[heroIndex]!.title[2]}<span className="it-dot" /></span></span>
+              </h1>
+              <p className={`it-hero__note${heroVisible ? " is-visible" : ""}`} aria-live="polite">{HERO_MESSAGES[heroIndex]!.note}</p>
               <div className="it-hero__actions">
                 <a href="#work" data-scroll data-cursor="hover">Explore what we build <span aria-hidden="true">→</span></a>
                 <a href="#system" data-scroll data-cursor="hover">How we work</a>
               </div>
             </div>
-            <div className="it-hero__scroll it-mono">
-              <i aria-hidden="true" />
-              <span>Scroll to explore</span>
-            </div>
+
+            <aside className="it-hero__panel" aria-label="Hero slides">
+              <div className="it-hero__panel-head"><span className="it-mono">Selected direction</span><span className="it-hero__count it-mono">0{heroIndex + 1} / 0{HERO_MESSAGES.length}</span></div>
+              <p className="it-hero__panel-title">Built for the work that matters next.</p>
+              <div className="it-hero__slides" role="tablist" aria-label="Hero messages">
+                {HERO_MESSAGES.map((message, index) => (
+                  <button key={message.title.join("-")} type="button" role="tab" aria-selected={heroIndex === index} className={`it-hero__slide${heroIndex === index ? " is-active" : ""}`} onClick={() => selectHeroSlide(index)} data-cursor="hover">
+                    <span>0{index + 1}</span><strong>{message.title.join(" ")}</strong><i aria-hidden="true" />
+                  </button>
+                ))}
+              </div>
+              <div className="it-hero__scroll it-mono"><i aria-hidden="true" /><span>Scroll to explore</span></div>
+            </aside>
           </div>
         </section>
 
