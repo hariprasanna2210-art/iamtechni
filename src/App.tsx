@@ -144,7 +144,7 @@ function App() {
           <a href="/about" onClick={closeMenu}>About</a>
           <details className="home-services-menu"><summary>Services <ArrowDownRight size={14}/></summary><div>{[['AI & Machine Learning','ai-machine-learning'],['Web Development','web-development'],['eCommerce Development','ecommerce'],['Mobile App Development','mobile-app-development'],['Custom Software','custom-software'],['Cloud & DevOps','cloud-devops'],['Digital Marketing','digital-marketing'],['Business Automation','automation']].map(([name,slug])=><a key={slug} href={`/services/${slug}`} onClick={closeMenu}>{name}<ArrowUpRight size={13}/></a>)}</div></details>
           <a href="/portfolio" onClick={closeMenu}>Portfolio</a>
-          <a href="/contact" onClick={closeMenu}>Contact</a>
+          <a href="/contact" onClick={closeMenu}>Contact</a><div className="mobile-menu-contact"><a href="mailto:iamtechni.hr@outlook.com">iamtechni.hr@outlook.com</a><a href="tel:+917418120053">+91 74181 20053</a></div>
         </nav>
         <a className="nav-cta" href="/contact">Let’s talk <ArrowUpRight size={15} /></a>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen}>{menuOpen ? <X /> : <Menu />}</button>
