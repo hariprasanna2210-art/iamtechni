@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, MotionConfig, useMotionValueEvent, useMotionValue, useReducedMotion, useScroll, useTransform, type Variants } from 'framer-motion'
 import {
-  ArrowDownRight, ArrowRight, ArrowUpRight, Braces, BrainCircuit,
-  Check, Cloud, Code2, Database, Globe2, Menu, Network,
+  ArrowRight, ArrowUpRight, Braces, BrainCircuit,
+  Check, Cloud, Code2, Database, Globe2, Network,
   PanelTop, ShieldCheck, Smartphone, Sparkles,
-  Workflow, X, Zap, Blocks, Compass, Gauge, Layers3, LifeBuoy,
+  Workflow, Zap, Blocks, Compass, Gauge, Layers3, LifeBuoy,
   LockKeyhole, MessageCircle, Rocket, Search, ShoppingBag, Target, BriefcaseBusiness,
 } from 'lucide-react'
 import ServicePages from './ServicePages'
+import { SiteFooter, SiteHeader } from './SiteChrome'
 
 const services = [
   { icon: PanelTop, number: '01', title: 'Websites & digital products', copy: 'Brand-led websites and web applications that make it easy for customers to take the next step.', detail: 'Web design / E-commerce / Web apps' },
@@ -32,12 +33,6 @@ const revealVariants = {
 function InView({ children, className = '', delay = 0, from = 'up' }: { children: React.ReactNode; className?: string; delay?: number; from?: keyof typeof revealVariants }) {
   const variant = revealVariants[from]
   return <motion.div className={className} variants={{ hidden: variant.hidden, visible: { ...variant.visible, transition: { duration: .72, delay, ease: [.22, 1, .36, 1] } } }} initial="hidden" whileInView="visible" viewport={{ once: true, amount: .16 }}>{children}</motion.div>
-}
-
-function Brand({ footer = false }: { footer?: boolean }) {
-  return <a className={`brand ${footer ? 'brand-footer' : ''}`} href="#home" aria-label="iamtechni home">
-    <span className="brand-crop"><img src="/iamtechni-logo.png" alt="iamtechni" /></span>
-  </a>
 }
 
 const heroStates = [
@@ -129,27 +124,10 @@ function KineticHero() {
 
 function App() {
   if (window.location.pathname !== '/') return <ServicePages />
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-  useEffect(() => { const update = () => setScrolled(window.scrollY > 16); update(); window.addEventListener('scroll', update, { passive: true }); return () => window.removeEventListener('scroll', update) }, [])
-  const closeMenu = () => setMenuOpen(false)
 
   return <MotionConfig reducedMotion="user"><>
-    <motion.header className={`site-header ${scrolled ? 'header-scrolled' : ''}`} initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .55, ease: [.22, 1, .36, 1] }}>
-      <div className="nav-inner">
-        <Brand />
-        <nav className={`nav-links ${menuOpen ? 'nav-open' : ''}`} aria-label="Main navigation">
-          <a href="/" onClick={closeMenu}>Home</a>
-          <a href="/about" onClick={closeMenu}>About</a>
-          <details className="home-services-menu"><summary>Services <ArrowDownRight size={14}/></summary><div>{[['AI & Machine Learning','ai-machine-learning'],['Web Development','web-development'],['eCommerce Development','ecommerce'],['Mobile App Development','mobile-app-development'],['Custom Software','custom-software'],['Cloud & DevOps','cloud-devops'],['Digital Marketing','digital-marketing'],['Business Automation','automation']].map(([name,slug])=><a key={slug} href={`/services/${slug}`} onClick={closeMenu}>{name}<ArrowUpRight size={13}/></a>)}</div></details>
-          <a href="/portfolio" onClick={closeMenu}>Portfolio</a>
-          <a href="/contact" onClick={closeMenu}>Contact</a><div className="mobile-menu-contact"><a href="mailto:iamtechni.hr@outlook.com">iamtechni.hr@outlook.com</a><a href="tel:+917418120053">+91 74181 20053</a></div>
-        </nav>
-        <a className="nav-cta" href="/contact">Let’s talk <ArrowUpRight size={15} /></a>
-        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen}>{menuOpen ? <X /> : <Menu />}</button>
-      </div>
-    </motion.header>
+    <SiteHeader />
 
     <main>
       <KineticHero />
@@ -193,7 +171,7 @@ function App() {
         </form></InView></div></section>
     </main>
 
-    <footer className="site-footer"><InView className="footer-main page-shell" from="up"><div className="footer-brand"><Brand footer /><p>Practical technology for businesses ready to build what’s next.</p></div><div className="footer-column"><span>EXPLORE</span><a href="/services">Services</a><a href="/about">About iamtechni</a><a href="#work">Selected work</a><a href="#contact">Let’s talk</a></div><div className="footer-column"><span>CAPABILITIES</span><a href="/services/web-development">Web development</a><a href="/services/ai-machine-learning">AI &amp; machine learning</a><a href="/services/cloud-devops">Cloud &amp; DevOps</a><a href="/services/custom-software">Custom software</a></div><div className="footer-contact"><span>GET IN TOUCH</span><p>Pondicherry, India<br />Working across Tamil Nadu</p><a href="mailto:iamtechni.hr@outlook.com">iamtechni.hr@outlook.com</a><a href="tel:+917418120053">+91 74181 20053</a><a href="#contact">Let’s talk <ArrowUpRight size={14} /></a></div></InView><div className="footer-bottom page-shell"><span>© 2026 iamtechni. All rights reserved.</span><a href="#home">Back to top <ArrowUpRight size={13} /></a></div></footer>
+    <SiteFooter />
   </></MotionConfig>
 }
 

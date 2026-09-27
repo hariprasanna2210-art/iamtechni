@@ -833,3 +833,6 @@ main { overflow-x: clip; }
 .site-header .mobile-menu-contact{display:none;}
 @media(max-width:760px){.site-header .mobile-menu-contact{display:grid;margin:6px 0 0;padding:13px 0 4px;border-top:1px solid #edf1f5;}.site-header .mobile-menu-contact a{padding:5px 0;color:#45637d;font-size:12px;text-decoration:none;overflow-wrap:anywhere;}}
 .detail-site-footer .footer-contact a[href^="mailto:"]{overflow-wrap:anywhere;}
+/* Shared fixed header also serves the interior pages; offset their content accordingly. */
+.detail-page{padding-top:84px;}
+@media(max-width:760px){.detail-page{padding-top:72px;}}
