@@ -1,0 +1,7 @@
+﻿node_modules/
+dist/
+.aider-desk/
+.agents/
+skills-lock.json
+skills-lock.zip
+tmp-kinetic-desktop.png
